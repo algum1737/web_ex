@@ -2,7 +2,11 @@ package com.webt.webt;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class HomeController {
 	
@@ -33,7 +37,33 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "index";
 	}
 	
+	
+	@RequestMapping("AjaxHome")
+	public ModelAndView AjaxHome(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ajax_test");
+		return mv;
+	}
+	
+	
+	@RequestMapping("ajax")
+	@ResponseBody
+	public ModelAndView ajax(HttpServletRequest request) throws Exception{
+		String firstArg = request.getParameter("test1");
+		String secondArg = request.getParameter("test2");
+		System.out.println("여기 /ajax안!");
+		System.out.println(firstArg+" / "+secondArg);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("test1", firstArg);
+		map.put("test2", secondArg);
+		System.out.println(map.get("test1"));
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("ajax_test");
+		mv.addObject("map",map);
+		return mv;
+	}
+
 }

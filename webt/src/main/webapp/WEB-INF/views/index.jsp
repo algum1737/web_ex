@@ -8,5 +8,11 @@
 </head>
 <body>
 <h1>테스트중!!</h1>
+
+
+<ul>
+<li><a href="AjaxHome">ajax 예제 1</a></li>
+</ul>
+
 </body>
 </html>
