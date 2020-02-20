@@ -41,7 +41,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#btn1').click(function() {
-
+//
 			var allData = "test1=1&test2=2";
 
 			$.ajax({
