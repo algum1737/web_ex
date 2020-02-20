@@ -5,34 +5,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Ajax Test</title>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 이게 폼으로 정보 -->
+<!-- <script type="text/javascript">
 	$(function() {
-		$('#AjaxStart').click(function() {
+		$('#btn1').click(function() {
+						var form = {
+							name : "jamong",
+							age : 23
+						}
+			//var allData = "test1=1&test2=2";
+
+			$.ajax({
+				type : "POST",
+				data : form,
+				url : "requestObject",
+				success : function(data) {
+					alert(data);
+					$('#result').text(data);
+				},
+				error : function() {
+					alert("simpleWithObject err");
+				}
+			});
+		});
+	});
+</script> -->
+<!-- 일반 text -->
+<script type="text/javascript">
+	$(function() {
+		$('#btn1').click(function() {
+
 			var allData = "test1=1&test2=2";
+
 			$.ajax({
 				type : "POST",
 				dataType : 'text',
-			    //dataType: "json",
 				data : allData,
-				url : "ajax",
-				beforeSend:function(){
-					alert("시작!");
-				},
-				success : function(map) {
-					alert("이거? = "+map.value);
+				url : "requestObject",
+				success : function(data) {
+					alert(data);
+					$('#result').text(data);
 				},
 				error : function() {
-					alert("난리네");
+					alert("simpleWithObject err");
 				}
 			});
 		});
 	});
 </script>
 </head>
+
 <body>
-	<button id="AjaxStart">Ajax Start</button>
+	<button id="btn1">simpleAJAX</button>
+	<div id="result"></div>
 </body>
+
 </html>

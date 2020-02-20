@@ -41,29 +41,35 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping("AjaxHome")
+	@RequestMapping(value="AjaxHome")
 	public ModelAndView AjaxHome(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("ajax_test");
 		return mv;
 	}
 	
-	
-	@RequestMapping("ajax")
-	@ResponseBody
-	public ModelAndView ajax(HttpServletRequest request) throws Exception{
-		String firstArg = request.getParameter("test1");
-		String secondArg = request.getParameter("test2");
-		System.out.println("여기 /ajax안!");
-		System.out.println(firstArg+" / "+secondArg);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("test1", firstArg);
-		map.put("test2", secondArg);
-		System.out.println(map.get("test1"));
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("ajax_test");
-		mv.addObject("map",map);
-		return mv;
-	}
+	// 이게 폼!!!
+//    @RequestMapping(value="requestObject", method=RequestMethod.POST)
+//    @ResponseBody
+//    public String simpleWithObject(Jamong jamong) {
+//        //필요한 로직 처리
+//    	System.out.println("돼냐고");
+//    	System.out.println("이름 : "+jamong.getName());
+//        return jamong.getName() + jamong.getAge();
+//    }
+
+	// 이게 일반 데이터
+    @RequestMapping(value="requestObject", method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object>ajax(HttpServletRequest request) throws Exception{
+    	String fA=request.getParameter("test1");
+    	String sA=request.getParameter("test2");
+    	System.out.println(fA+" / : "+sA);
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	map.put("test1", fA);
+    	map.put("test2", sA);
+    	return map;
+    }
+
 
 }
