@@ -12,6 +12,7 @@
 
 <ul>
 <li><a href="AjaxHome">ajax 예제 1</a></li>
+<li><a href="AjaxHome1">ajax 예제 2</a></li>
 </ul>
 
 </body>
